@@ -1,12 +1,13 @@
 package com.springboot.blog.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -27,5 +28,7 @@ public class Post {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true)
+    private List<Comment> comments=new ArrayList<>();
 
 }
